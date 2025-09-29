@@ -1,0 +1,12 @@
+[build]
+  # Astro's default build directory for static output
+  publish = "dist"
+
+  # Astro's default build command
+  command = "npm run build"
+
+# Handle 404s like an SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
