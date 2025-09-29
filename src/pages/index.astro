@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoVal Paperless Validation Solution</title>
     
+    <!-- Load Tailwind CSS CDN FIRST -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- 
-        FIX: The configuration script MUST come before the CDN link
-        so that the CDN script can read the config object after it loads.
+        FIX: To avoid the 'Cannot find name tailwind' error, the configuration 
+        must be placed inside a script block with type="text/tailwindcss".
+        This ensures the Tailwind processor handles the config timing correctly.
     -->
-    <script>
+    <script type="text/tailwindcss">
         // Configure Tailwind to include custom colors and extend utility classes
         tailwind.config = {
             theme: {
@@ -27,9 +31,6 @@
             }
         }
     </script>
-    
-    <!-- Load Tailwind CSS CDN (now loads AFTER the config is defined) -->
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
         /* Base Styles (Shared/Global Styles) */
@@ -170,7 +171,7 @@
             <a href="#home" class="flex items-center space-x-2">
                 <!-- *** PASTE YOUR LOGO IMAGE URL HERE *** -->
                 <img 
-                    src="YOUR_LOGO_IMAGE_URL_HERE" 
+                    src="https://media.licdn.com/dms/image/v2/C5633AQHLY0AP_hoJjQ/productpage-logo-image_100_100/productpage-logo-image_100_100/0/1637651096499/adventsys_govalidation_logo?e=1759276800&v=beta&t=SM4v3SZUyjtQZHZ-BNTeJtOICOm5OSMs7rwQ29QATVw" 
                     alt="GoVal Logo" 
                     class="w-8 h-8 object-contain" 
                     onerror="this.src='https://placehold.co/32x32/ff9500/ffffff?text=Logo';"
