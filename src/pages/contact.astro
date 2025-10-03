@@ -1,325 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - GoVal</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - GoVal</title>
+  <style>
+    /* Base Styles */
+    body { 
+      font-family: 'Inter', Arial, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      background-color: #f8f9ff; 
+      color: #333; 
+      line-height: 1.6; 
+    }
+    .main-container { 
+      display: flex; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 60px 20px; 
+      gap: 40px; 
+      align-items: flex-start; 
+    }
+    .left-side { 
+      flex: 1; 
+      max-width: 500px; 
+      text-align: left;
+    }
+    .right-side { 
+      flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: flex-start; 
+      gap: 30px; 
+    }
+    .contact-image { 
+      width: 100%; 
+      max-width: 500px; 
+      height: auto; 
+      aspect-ratio: 1 / 1; 
+      border-radius: 12px; 
+      object-fit: cover; 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
+      border: 4px solid #007bff; 
+      align-self: center; 
+    }
+    .locations { 
+      padding: 25px; 
+      background-color: #ffffff; 
+      border-radius: 12px; 
+      width: 100%; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-left: 5px solid #ff9500;
+      text-align: left; 
+      color: #333; 
+      font-size: 15px; 
+      line-height: 1.6; 
+    }
+    .locations h3 { 
+      color: #007bff; 
+      margin-bottom: 12px; 
+      font-size: 18px; 
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+    .locations strong { 
+      color: #007bff; 
+      font-weight: 700;
+    }
+    .email-link { 
+      color: #007bff; 
+      text-decoration: none; 
+      font-weight: 600; 
+      transition: color 0.2s;
+    }
+    .email-link:hover { 
+      text-decoration: underline; 
+      color: #ff9500;
+    }
+    .title { 
+      font-size: 2.5em; 
+      background: linear-gradient(45deg, #8b5cf6, #ec4899, #3b82f6); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      background-clip: text; 
+      margin-bottom: 15px; 
+      font-weight: 800; 
+      text-align: left; 
+    }
+    .para { 
+      font-size: 17px; 
+      color: #555; 
+      margin-bottom: 30px; 
+      max-width: 100%; 
+      text-align: left; 
+    }
+    .contact-us { 
+      font-size: 15px; 
+      color: #000; 
+      margin-bottom: 20px; 
+      font-weight: bold; 
+      display: block; 
+      text-align: left; 
+      text-transform: uppercase;
+    }
+    form { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 15px; 
+      max-width: 100%; 
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background-color: #fff;
+    }
+    label { 
+      font-size: 14px; 
+      color: #333; 
+      font-weight: bold; 
+      margin-bottom: 3px; 
+      display: block; 
+    }
+    input, select, textarea { 
+      width: 100%; 
+      padding: 12px; 
+      border: 1px solid #ddd; 
+      border-radius: 8px; 
+      font-size: 16px; 
+      box-sizing: border-box; 
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    input:focus, select:focus, textarea:focus { 
+      outline: none; 
+      border-color: #007bff; 
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15); 
+    }
+    .required { color: #ff0000; }
+    textarea { 
+      resize: vertical; 
+      min-height: 100px; 
+    }
+    .checkbox-group { 
+      display: flex; 
+      align-items: flex-start; 
+      gap: 10px; 
+      font-size: 14px; 
+    }
+    .checkbox-group input[type="checkbox"] { 
+      margin-top: 5px; 
+      width: 20px; 
+      height: 20px;
+      min-width: 20px;
+      min-height: 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .privacy-text { 
+      font-size: 12px; 
+      color: #999; 
+      margin-top: 5px; 
+      line-height: 1.4; 
+    }
+    .submit-btn { 
+      background-color: #ff9500; 
+      color: white; 
+      padding: 15px 30px; 
+      font-size: 18px; 
+      font-weight: bold; 
+      border: none; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: background-color 0.3s, transform 0.1s; 
+      align-self: center; 
+      margin-top: 15px; 
+      box-shadow: 0 4px 10px rgba(255, 149, 0, 0.3);
+    }
+    .submit-btn:hover { 
+      background-color: #e68900; 
+      transform: translateY(-1px);
+    }
+    .support { 
+      text-align: left; 
+      margin-top: 40px; 
+      padding: 20px; 
+      border-top: 1px solid #eee; 
+      max-width: 100%; 
+    }
+    .support h3 { 
+      color: #333; 
+      margin-bottom: 10px; 
+    }
+    .support p { 
+      color: #666; 
+      margin: 5px 0; 
+    }
 
-    <!-- Load Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    /* Footer Styles (Replacement for Astro component) */
+    .site-footer {
+        padding: 30px 20px;
+        text-align: center;
+        background-color: #2c3e50; 
+        color: white;
+        margin-top: 50px;
+    }
+    .site-footer p {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+    .site-footer a {
+        color: #ff9500;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+    .site-footer a:hover {
+        color: #ffc107;
+    }
 
-    <style>
-        /* Custom Styles that require -webkit prefixes or special handling */
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f7f7f7; /* Light background for the page */
-        }
-        
-        /* Custom gradient for the main title */
-        .gradient-title { 
-            background: linear-gradient(45deg, #8b5cf6, #ec4899, #3b82f6); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text; 
-            font-weight: bold; 
-            line-height: 1.2;
-        }
+    /* Custom Message Modal Styles (Replaces alert()) */
+    .message-modal {
+      display: none; 
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5); 
+      padding-top: 60px;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto; 
+      padding: 30px;
+      border: none;
+      width: 90%; 
+      max-width: 400px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      animation: fadeIn 0.3s;
+    }
+    .modal-content p {
+        font-size: 1.1em;
+        color: #333;
+        font-weight: 500;
+    }
+    .ok-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+    .ok-btn:hover {
+      background-color: #0056b3;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-        /* Styling for the required fields asterisk */
-        .required { 
-            color: #ff0000; 
-        }
 
-        /* Custom success message box styling */
-        #message-box {
-            position: fixed;
-            top: 1rem;
-            left: 50%;
-            transform: translate(-50%, 0);
-            z-index: 1000;
-            transition: all 0.5s ease-in-out;
-            opacity: 0;
-            visibility: hidden;
-        }
-        #message-box.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Hide the fallback div by default */
-        .image-fallback {
-             display: none;
-        }
-
-        /* Responsive image size adjustment */
-        .contact-image-container {
-            width: 100%;
-            height: 20rem; /* Fixed height for mobile */
-        }
-        @media (min-width: 768px) {
-            .contact-image-container {
-                height: 30rem; /* Taller on desktop/tablet */
-            }
-        }
-    </style>
+    /* --- Responsive: Stack on Mobile --- */
+    @media (max-width: 768px) { 
+      .main-container { 
+        flex-direction: column; 
+        padding: 40px 15px; 
+        gap: 30px; 
+        width: 100%; 
+      }
+      .left-side, .right-side { 
+        max-width: 100%; 
+        width: 100%; 
+        align-items: center; 
+      }
+      .title, .para, .contact-us, .support, .support h3 {
+        text-align: center; 
+      }
+      .contact-image { 
+        max-width: 300px; 
+        height: auto; 
+        margin: 0 auto 10px auto; 
+      }
+      .locations { 
+        padding: 20px; 
+        font-size: 14px; 
+      }
+      form { 
+        padding: 15px; 
+        gap: 12px; 
+      }
+      .checkbox-group { 
+        justify-content: center; 
+        text-align: left; 
+      }
+      .submit-btn { 
+        width: 80%; 
+        max-width: 300px;
+      }
+      
+      /* Extra adjustments for touch targets */
+      input, select, textarea {
+        padding: 15px; 
+      }
+    }
+  </style>
 </head>
 <body>
-    
-    <!-- Success Message Box (Replaces alert()) -->
-    <div id="message-box" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-lg shadow-xl">
-        Form submitted successfully! We'll get back to you soon.
+  <div class="main-container">
+    <!-- Left Side: Title, Para, Form, Support -->
+    <div class="left-side">
+      <!-- Title with Gradient -->
+      <h1 class="title">Get in Touch with GoVal</h1>
+      
+      <!-- Paragraph -->
+      <p class="para">
+        We'd love to hear from you! Whether you have questions about our solutions, need a demo, or want to discuss how GoVal can help streamline your validation processes, our team is here to assist you.
+      </p>
+      
+      <!-- Contact Us Label -->
+      <h6 class="contact-us">Contact Us</h6>
+      
+      <!-- Form -->
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <!-- Name -->
+        <div>
+          <label for="name">Name <span class="required">*</span></label>
+          <input type="text" id="name" name="name" required placeholder="Full Name">
+        </div>
+        
+        <!-- Business Email -->
+        <div>
+          <label for="email">Business Email <span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="yourname@company.com" required>
+        </div>
+        
+        <!-- Contact Number -->
+        <div>
+          <label for="phone">Contact Number with Country Code <span class="required">*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 555 123 4567" required>
+        </div>
+        
+        <!-- Country Dropdown -->
+        <div>
+          <label for="country">Country <span class="required">*</span></label>
+          <select id="country" name="country" required>
+            <option value="">Select Country</option>
+            <option value="US">United States</option>
+            <option value="UK">United Kingdom</option>
+            <option value="IN">India</option>
+            <option value="CA">Canada</option>
+            <option value="AU">Australia</option>
+            <option value="DE">Germany</option>
+            <option value="FR">France</option>
+            <option value="JP">Japan</option>
+            <option value="BR">Brazil</option>
+            <!-- Add more countries as needed -->
+          </select>
+        </div>
+        
+        <!-- Organization -->
+        <div>
+          <label for="organization">Organization</label>
+          <input type="text" id="organization" name="organization" placeholder="Your Company Name">
+        </div>
+        
+        <!-- How Can I Help? -->
+        <div>
+          <label for="message">How Can I Help?</label>
+          <textarea id="message" name="message" placeholder="Tell us more about your needs..."></textarea>
+        </div>
+        
+        <!-- Checkbox + Privacy Text -->
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms" style="font-weight: normal; margin-bottom: 0;">I agree to the Terms of Use and Privacy Policy</label>
+        </div>
+        <p class="privacy-text">
+          By submitting this form, you agree to the Terms of Use and Privacy Policy. We value your privacy and will not share your information without your consent.
+        </p>
+        
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+      
+      <!-- Customer Support (Below Form) -->
+      <div class="support">
+        <h3>Customer Support</h3>
+        <p>General Email:</p>
+        <p><a href="mailto:support@goval.com" class="email-link">support@goval.com</a></p>
+      </div>
     </div>
 
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 md:gap-12 p-6 pt-24 md:p-12">
-        <!-- Left Side: Form and Support -->
-        <div class="w-full md:w-1/2 lg:max-w-xl">
-            <!-- Title with Gradient -->
-            <h1 class="gradient-title text-3xl md:text-4xl lg:text-5xl text-center md:text-left mb-4">
-                Get in Touch with GoVal
-            </h1>
-            
-            <!-- Paragraph -->
-            <p class="text-base text-gray-600 mb-8 max-w-full text-center md:text-left">
-                We'd love to hear from you! Whether you have questions about our solutions, need a demo, or want to discuss how GoVal can help streamline your validation processes, our team is here to assist you.
-            </p>
-            
-            <!-- Contact Us Label -->
-            <h6 class="text-sm font-bold text-black mb-6 block text-center md:text-left">Contact Us</h6>
-            
-            <!-- Form -->
-            <form id="contactForm" onsubmit="handleSubmit(event)" class="flex flex-col gap-5 text-left">
-                
-                <!-- Name -->
-                <div>
-                    <label for="name" class="text-sm text-gray-700 font-bold mb-1 block">Name <span class="required">*</span></label>
-                    <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-lg text-base focus:ring-blue-500 focus:border-blue-500 transition-shadow">
-                </div>
-                
-                <!-- Business Email -->
-                <div>
-                    <label for="email" class="text-sm text-gray-700 font-bold mb-1 block">Business Email <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" placeholder="yourname@company.com" required class="w-full p-3 border border-gray-300 rounded-lg text-base focus:ring-blue-500 focus:border-blue-500 transition-shadow">
-                </div>
-                
-                <!-- Contact Number -->
-                <div>
-                    <label for="phone" class="text-sm text-gray-700 font-bold mb-1 block">Contact Number with Country Code <span class="required">*</span></label>
-                    <input type="tel" id="phone" name="phone" placeholder="+1 (country code)" required class="w-full p-3 border border-gray-300 rounded-lg text-base focus:ring-blue-500 focus:border-blue-500 transition-shadow">
-                </div>
-                
-                <!-- Country Dropdown -->
-                <div>
-                    <label for="country" class="text-sm text-gray-700 font-bold mb-1 block">Country <span class="required">*</span></label>
-                    <select id="country" name="country" required class="w-full p-3 border border-gray-300 rounded-lg text-base focus:ring-blue-500 focus:border-blue-500 transition-shadow">
-                        <option value="">Select Country</option>
-                        <option value="US">United States</option>
-                        <option value="UK">United Kingdom</option>
-                        <option value="IN">India</option>
-                        <option value="CA">Canada</option>
-                        <option value="AU">Australia</option>
-                        <option value="DE">Germany</option>
-                        <option value="FR">France</option>
-                        <option value="JP">Japan</option>
-                        <option value="BR">Brazil</option>
-                    </select>
-                </div>
-                
-                <!-- Organization -->
-                <div>
-                    <label for="organization" class="text-sm text-gray-700 font-bold mb-1 block">Organization</label>
-                    <input type="text" id="organization" name="organization" class="w-full p-3 border border-gray-300 rounded-lg text-base focus:ring-blue-500 focus:border-blue-500 transition-shadow">
-                </div>
-                
-                <!-- How Can I Help? -->
-                <div>
-                    <label for="message" class="text-sm text-gray-700 font-bold mb-1 block">How Can I Help?</label>
-                    <textarea id="message" name="message" placeholder="Tell us more about your needs..." class="w-full p-3 border border-gray-300 rounded-lg text-base resize-y min-h-[120px] focus:ring-blue-500 focus:border-blue-500 transition-shadow"></textarea>
-                </div>
-                
-                <!-- Checkbox + Privacy Text -->
-                <div class="flex items-start gap-3 text-sm">
-                    <input type="checkbox" id="terms" name="terms" required class="mt-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                    <label for="terms" class="text-gray-700 font-normal mb-0 leading-snug">I agree to the Terms of Use and Privacy Policy</label>
-                </div>
-                <p class="text-xs text-gray-500 mt-[-10px] leading-relaxed">
-                    By submitting this form, you agree to the Terms of Use and Privacy Policy. We value your privacy and will not share your information without your consent.
-                </p>
-                
-                <!-- Submit Button -->
-                <button type="submit" class="bg-orange-500 text-white py-4 px-8 text-lg font-bold border-none rounded-lg cursor-pointer transition duration-300 hover:bg-orange-600 shadow-lg mt-4 w-full md:w-auto self-center">
-                    Submit
-                </button>
-            </form>
-            
-            <!-- Customer Support (Below Form) -->
-            <div class="text-center mt-10 pt-6 border-t border-gray-200 w-full">
-                <h3 class="text-lg font-semibold text-gray-800 mb-2">Customer Support</h3>
-                <p class="text-gray-600 mb-1">Email:</p>
-                <p><a href="mailto:support@goval.com" class="text-blue-600 hover:underline font-bold">support@goval.com</a></p>
-            </div>
-        </div>
-
-        <!-- Right Side: Image + Locations Below -->
-        <div class="w-full md:w-1/2 flex flex-col items-center md:items-start space-y-8">
-            <!-- Image (Made fluid) -->
-            <div class="contact-image-container relative w-full max-w-lg md:max-w-full">
-                <img 
-                    src="https://www.govalidation.com/images/customer-support.jpg"  
-                    alt="GoVal Contact Image" 
-                    class="w-full h-full object-cover rounded-xl shadow-xl border-4 border-blue-500"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                />
-                <!-- Fallback for Image (Square Rectangular) -->
-                <div class="image-fallback absolute inset-0 rounded-xl bg-blue-500 border-4 border-blue-500 flex items-center justify-center">
-                     <span class="text-white font-bold text-xl">Contact Support</span>
-                </div>
-            </div>
-            
-            <!-- Locations Section -->
-            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg md:max-w-full text-left">
-                <h3 class="text-xl font-bold text-blue-600 mb-4">Email:</h3>
-                <p class="text-gray-700 mb-2">Sales Enquiry: <a href="mailto:info@govalidation.com" class="text-blue-600 hover:underline font-semibold">info@govalidation.com</a></p>
-                <p class="text-gray-700 mb-6">Technical Support: <a href="mailto:govalsupport@adventsys.co" class="text-blue-600 hover:underline font-semibold">govalsupport@adventsys.co</a></p>
-                
-                <h3 class="text-xl font-bold text-blue-600 mb-4">Locations:</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- India Location -->
-                    <div>
-                        <p class="text-lg font-bold text-blue-600 mb-1">INDIA</p>
-                        <p class="text-sm text-gray-700 leading-snug">
-                            1st Floor, Prestige Samrah Plaza, St Marks Road, Shanthala Nagar, Ashok Nagar, Bengaluru 560 001, India
-                        </p>
-                        <p class="text-sm text-gray-700 mt-2">
-                            Phone: +91 99000 23710, +91 90081 50710
-                        </p>
-                    </div>
-
-                    <!-- USA Location -->
-                    <div>
-                        <p class="text-lg font-bold text-blue-600 mb-1">USA</p>
-                        <p class="text-sm text-gray-700 leading-snug">
-                            7232 BROADWAY STE 306, JACKSON HEIGHTS NY 11372, USA
-                        </p>
-                        <p class="text-sm text-gray-700 mt-2">
-                            Phone: +1 (408) 457-0086, +1 (908) 656-8258
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Right Side: Image + Locations Below -->
+    <div class="right-side">
+      <img 
+        src="https://placehold.co/500x500/007bff/ffffff?text=Contact+Us+Image" 
+        alt="GoVal Contact Image" 
+        class="contact-image"
+        onerror="this.src='https://placehold.co/500x500/007bff/ffffff?text=Contact+Us+Image';"
+      />
+      
+      <!-- Locations Section -->
+      <div class="locations">
+        <h3>Email Enquiries:</h3>
+        <p>Sales: <a href="mailto:info@govalidation.com" class="email-link">info@govalidation.com</a></p>
+        <p>Technical: <a href="mailto:govalsupport@adventsys.co" class="email-link">govalsupport@adventsys.co</a></p>
+        <br>
+        <h3>Global Locations:</h3>
+        <p><strong>INDIA</strong><br>
+        1st Floor, Prestige Samrah Plaza, St Marks Road, Shanthala Nagar, Ashok Nagar, Bengaluru 560 001, India<br>
+        Phone: +91 99000 23710, +91 90081 50710</p>
+        <br>
+        <p><strong>USA</strong><br>
+        7232 BROADWAY STE 306, JACKSON HEIGHTS NY 11372, USA<br>
+        Phone: +1 (408) 457-0086, +1 (908) 656-8258</p>
+      </div>
     </div>
+  </div>
 
-    <!-- =================================================== -->
-    <!-- >>> START OF FOOTER COMPONENT (Converted from Footer.astro) <<< -->
-    <!-- =================================================== -->
-    <footer class="bg-[#1e3a67] text-white pt-12 pb-4 px-6 md:px-8 mt-12">
-        <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+  <!-- Footer (Custom HTML replacement for Astro component) -->
+  <footer class="site-footer">
+    <p>&copy; 2025 GoVal. All rights reserved.</p>
+    <p>
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Terms of Use</a> |
+        <a href="#">Sitemap</a>
+    </p>
+  </footer>
 
-            <div class="mb-8">
-                <p class="text-3xl font-bold tracking-wider mb-2">GOVAL</p>
-                <p class="text-sm text-gray-300 max-w-sm">
-                    GoVal: Paperless Validation solutions for Life Science Industries.
-                </p>
-            </div>
+  <!-- Custom Message Modal Structure -->
+  <div id="message-modal" class="message-modal">
+    <div class="modal-content">
+      <p id="modal-text">Message content goes here.</p>
+      <button class="ok-btn" onclick="closeModal()">OK</button>
+    </div>
+  </div>
 
-            <div class="mb-10 w-full">
-                <h3 class="text-lg font-semibold mb-4">Follow Us On</h3>
-                <div class="flex justify-center space-x-4">
-                    <!-- Social Links (Converted from Astro/JSX map) -->
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-indigo-600 hover:bg-indigo-500 transition duration-150">
-                        <span class="text-white text-xl">in</span>
-                    </a>
-                    <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-indigo-600 hover:bg-indigo-500 transition duration-150">
-                        <span class="text-white text-xl">X</span>
-                    </a>
-                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-indigo-600 hover:bg-indigo-500 transition duration-150">
-                        <span class="text-white text-xl">▶</span>
-                    </a>
-                </div>
-            </div>
+  <script>
+    // Global variable to track if the last modal message requires a form reset
+    let shouldResetForm = false;
 
-            <nav class="space-y-3 mb-10 text-sm w-full max-w-xs">
-                <!-- Navigation Links (Converted from Astro/JSX map - links adjusted for single-page anchors) -->
-                <a href="#home" class="block text-gray-300 hover:text-white transition-colors duration-200">Home</a>
-                <a href="#ai" class="block text-gray-300 hover:text-white transition-colors duration-200">GoVal AI</a>
-                <a href="#solution" class="block text-gray-300 hover:text-white transition-colors duration-200">Solutions</a>
-                <a href="#contact" class="block text-gray-300 hover:text-white transition-colors duration-200">About GoVal</a>
-                <a href="#contact" class="block text-gray-300 hover:text-white transition-colors duration-200">Blogs</a>
-                <a href="#contact" class="block text-gray-300 hover:text-white transition-colors duration-200">Customer Stories</a>
-                <a href="#contact" class="block text-gray-300 hover:text-white transition-colors duration-200">Contact Us</a>
-            </nav>
-            
-            <div class="flex justify-center space-x-6 mb-8">
-                <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center border-2 border-indigo-400">
-                    <span class="text-xs text-center leading-tight">ISO<br>9001</span>
-                </div>
-                <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center border-2 border-indigo-400">
-                    <span class="text-xs text-center leading-tight">ISO<br>27001</span>
-                </div>
-            </div>
+    /**
+     * Shows the custom message modal.
+     * Includes null checks for TypeScript compatibility.
+     * @param {string} message - The message to display.
+     * @param {boolean} success - True if the message is for a successful submission.
+     */
+    function showMessage(message, success = false) {
+      const modal = document.getElementById('message-modal');
+      const modalText = document.getElementById('modal-text');
 
-            <div class="w-full h-px bg-gray-700/50 mb-4"></div>
+      // Null check for the text content element
+      if (modalText) {
+        modalText.textContent = message;
+      }
+      
+      // Null check for the modal container
+      if (modal) {
+        modal.style.display = 'block';
+      }
 
-            <div class="w-full">
-                <p class="text-xs text-gray-400 mb-4">
-                    © 2025 GoVal
-                </p>
-                
-                <div class="flex justify-center space-x-4 text-xs text-gray-400">
-                    <!-- Legal Links (Converted from Astro/JSX map) -->
-                    <a href="/terms" class="hover:text-white transition-colors duration-200">Terms of Use</a>
-                    <span class="hidden sm:inline">|</span>
-                    <a href="/privacy" class="hover:text-white transition-colors duration-200">Privacy Policy</a>
-                    <span class="hidden sm:inline">|</span>
-                    <a href="/sitemap" class="hover:text-white transition-colors duration-200">Sitemap</a>
-                </div>
-            </div>
+      // Set the flag
+      shouldResetForm = success;
+    }
 
-        </div>
-    </footer>
-    <!-- =================================================== -->
-    <!-- >>> END OF FOOTER COMPONENT <<< -->
-    <!-- =================================================== -->
+    /**
+     * Closes the custom message modal and resets the form if it was a successful submission.
+     * Uses instanceof HTMLFormElement check to safely access the .reset() method.
+     */
+    function closeModal() {
+      const modal = document.getElementById('message-modal');
+      
+      // Null check for modal before hiding
+      if (modal) {
+        modal.style.display = 'none';
+      }
 
-    <script>
-        function showMessage(message) {
-            const msgBox = document.getElementById('message-box');
-            msgBox.textContent = message;
-            msgBox.classList.add('show');
-            
-            // Hide the message after 3 seconds
-            setTimeout(() => {
-                msgBox.classList.remove('show');
-            }, 3000);
-        }
+      const formElement = document.getElementById('contactForm');
+      
+      // Null check and explicit type check for HTMLFormElement to safely use .reset()
+      if (shouldResetForm && formElement instanceof HTMLFormElement) {
+        formElement.reset(); 
+        shouldResetForm = false; // Reset the flag after use
+      }
+    }
 
-        function handleSubmit(event) {
-            event.preventDefault(); // Prevent real submit
-            const form = document.getElementById('contactForm');
-            const terms = document.getElementById('terms');
-            
-            if (!terms.checked) {
-                // Use custom message display instead of alert()
-                showMessage('Please agree to the Terms of Use and Privacy Policy.');
-                return;
-            }
-            
-            // Collect form data (for simulation/logging)
-            const formData = new FormData(form);
-            const data = {};
-            for (const [key, value] of formData.entries()) {
-                data[key] = value;
-            }
+    /**
+     * Handles form submission logic.
+     * Uses instanceof HTMLInputElement check to safely access the .checked property.
+     * @param {Event} event - The form submit event.
+     */
+    function handleSubmit(event) {
+      event.preventDefault(); // Stop default form submission
+      
+      const terms = document.getElementById('terms');
+      
+      // Check for existence, ensure it's an HTMLInputElement, and check the .checked property
+      if (!terms || !(terms instanceof HTMLInputElement) || !terms.checked) {
+        showMessage('Please agree to the Terms of Use and Privacy Policy.');
+        return;
+      }
+      
+      // Success Case: showMessage is called with 'true'
+      showMessage('Form submitted successfully! We\'ll get back to you soon.', true); 
+    }
 
-            console.log('--- Form Submission Data (Simulated) ---');
-            console.log(data);
-            console.log('----------------------------------------');
-            
-            // Simulate successful submission
-            showMessage('Form submitted successfully! We\'ll get back to you soon.');
-            form.reset(); // Clear form
-        }
-    </script>
+    // Close the modal if the user clicks anywhere outside of the modal content
+    window.onclick = function(event) {
+      const modal = document.getElementById('message-modal');
+      // Null check for modal before checking target
+      if (modal && event.target === modal) {
+        closeModal();
+      }
+    }
+  </script>
 </body>
 </html>
