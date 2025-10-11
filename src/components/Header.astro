@@ -1,1 +1,84 @@
+---
+---
+<header class="bg-white border-b-4 border-gray-200 shadow-md relative z-50">
+  <div class="container mx-auto flex items-center justify-between py-4 px-5">
+    <!-- Logo + text -->
+    <a href="/" class="flex items-center gap-3">
+      <img src="https://i.tracxn.com/logo/company/gv_0271f594-d96d-494c-88bf-9c773ca07036.jpeg" alt="Goval Logo" class="h-14 w-auto" />
+      <span class="text-2xl md:text-3xl font-bold text-gray-800 tracking-wide">GOVAL</span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav class="hidden md:flex items-center gap-10 text-gray-700 text-base font-medium">
+      <a href="#" class="hover:text-gray-900 transition-colors">Home</a><br>
+      <a href="#" class="hover:text-gray-900 transition-colors">GoVal AI</a><br>
+      <a href="#" class="hover:text-gray-900 transition-colors">Solutions</a><br>
+      <a href="#" class="hover:text-gray-900 transition-colors">Blog</a><br>
+      <a href="#" class="hover:text-gray-900 transition-colors">Contact</a>
+    </nav>
+
+    <!-- Hamburger button (mobile) -->
+    <button
+      class="md:hidden flex flex-col justify-between w-7 h-5 focus:outline-none"
+      id="menu-btn"
+      aria-label="Toggle menu"
+    >
+      <span class="block w-full h-[3px] bg-gray-800 rounded transition-all duration-300"></span>
+      <span class="block w-full h-[3px] bg-gray-800 rounded transition-all duration-300"></span>
+      <span class="block w-full h-[3px] bg-gray-800 rounded transition-all duration-300"></span>
+    </button>
+  </div>
+
+  <!-- Mobile dropdown menu -->
+  <nav
+    id="mobile-menu"
+    class="hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-200 flex-col items-center py-4 space-y-4 md:hidden animate-fadeIn"
+  >
+    <a href="#" class="text-gray-800 hover:text-gray-900 font-medium">Home</a><br><br>
+    <a href="#" class="text-gray-800 hover:text-gray-900 font-medium">GoVal AI</a><br><br>
+    <a href="#" class="text-gray-800 hover:text-gray-900 font-medium">Solutions</a><br><br>
+    <a href="#" class="text-gray-800 hover:text-gray-900 font-medium">Blog</a><br><br>
+    <a
+  class="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition"
+  href="#"
+  >Contact us</a
+>
+  </nav>
+</header>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (menuBtn && mobileMenu) {
+      const lines = menuBtn.querySelectorAll("span");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+
+        if (!mobileMenu.classList.contains("hidden")) {
+          lines[0].classList.add("rotate-45", "translate-y-[7px]", "bg-gray-900");
+          lines[1].classList.add("opacity-0");
+          lines[2].classList.add("-rotate-45", "-translate-y-[7px]", "bg-gray-900");
+        } else {
+          lines[0].classList.remove("rotate-45", "translate-y-[7px]", "bg-gray-900");
+          lines[1].classList.remove("opacity-0");
+          lines[2].classList.remove("-rotate-45", "-translate-y-[7px]", "bg-gray-900");
+        }
+      });
+    }
+  });
+</script>
+
 
