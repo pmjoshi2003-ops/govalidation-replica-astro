@@ -13,8 +13,12 @@
       background-color: #f8f9ff; 
       color: #333; 
       line-height: 1.6; 
+      min-height: 100vh;
+      display: flex; 
+      flex-direction: column; 
     }
     .main-container { 
+      flex-grow: 1; 
       display: flex; 
       max-width: 1200px; 
       margin: 0 auto; 
@@ -104,15 +108,17 @@
       text-align: left; 
       text-transform: uppercase;
     }
+    /* Form Styling */
     form { 
       display: flex; 
       flex-direction: column; 
       gap: 15px; 
       max-width: 100%; 
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background-color: #fff;
+      padding: 30px; 
+      border: none; 
+      border-radius: 15px; 
+      background-color: #ffffff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
     }
     label { 
       font-size: 14px; 
@@ -133,7 +139,7 @@
     input:focus, select:focus, textarea:focus { 
       outline: none; 
       border-color: #007bff; 
-      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15); 
+      box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25); 
     }
     .required { color: #ff0000; }
     textarea { 
@@ -195,29 +201,126 @@
       margin: 5px 0; 
     }
 
-    /* Footer Styles (Replacement for Astro component) */
+    /* REPLICATED FOOTER STYLES */
     .site-footer {
-        padding: 30px 20px;
-        text-align: center;
-        background-color: #2c3e50; 
+        background-color: #2B3B4E; /* Dark blue background matching the image */
         color: white;
-        margin-top: 50px;
+        padding: 40px 20px 0 20px; 
+        text-align: center;
+        margin-top: auto; 
     }
-    .site-footer p {
-        margin: 5px 0;
-        font-size: 14px;
+    .footer-logo {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 1px;
     }
-    .site-footer a {
-        color: #ff9500;
+    .footer-logo svg {
+        height: 35px; 
+        width: 35px;
+        fill: white;
+    }
+    .footer-tagline {
+        font-size: 16px;
+        margin-bottom: 30px;
+        color: #b0c4de; /* Lighter text color */
+        line-height: 1.4;
+    }
+    .follow-us-heading {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    .social-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 18px;
+        transition: background-color 0.3s;
+        text-decoration: none; /* Ensure link styling is removed */
+    }
+    .social-icon:hover {
+        background-color: #ff9500; /* Orange highlight on hover */
+    }
+    .footer-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto 30px auto;
+        max-width: 300px; 
+    }
+    .footer-nav li {
+        margin-bottom: 10px;
+    }
+    .footer-nav a {
+        color: white;
         text-decoration: none;
-        font-weight: bold;
+        font-size: 15px;
         transition: color 0.3s;
+        padding: 5px; /* Increase tap area */
+        display: block;
     }
-    .site-footer a:hover {
-        color: #ffc107;
+    .footer-nav a:hover {
+        color: #ff9500;
     }
-
-    /* Custom Message Modal Styles (Replaces alert()) */
+    .certification-badges {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    .certification-badges img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: contain;
+        /* Using a generic ISO-like image placeholder */
+        background-color: white; 
+        padding: 5px;
+    }
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 20px 0;
+        font-size: 14px;
+        /* Desktop: uses flex for inline links/copyright. Mobile: stacks them. */
+        display: flex; 
+        justify-content: center;
+        flex-wrap: wrap; 
+        align-items: center;
+    }
+    .bottom-links {
+        margin: 0 20px 0 0; /* Margin for desktop separation */
+        display: flex;
+        gap: 15px;
+    }
+    .bottom-links a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+        padding: 5px;
+    }
+    .bottom-links a:hover {
+        color: #ff9500;
+    }
+    .copyright {
+        color: #b0c4de;
+        padding: 5px;
+    }
+    /* Custom Message Modal Styles */
     .message-modal {
       display: none; 
       position: fixed;
@@ -264,8 +367,6 @@
         from { opacity: 0; transform: translateY(-20px); }
         to { opacity: 1; transform: translateY(0); }
     }
-
-
     /* --- Responsive: Stack on Mobile --- */
     @media (max-width: 768px) { 
       .main-container { 
@@ -279,8 +380,16 @@
         width: 100%; 
         align-items: center; 
       }
-      .title, .para, .contact-us, .support, .support h3 {
+      .title, .para, .contact-us {
+        text-align: center;
+        max-width: 100%;
+      }
+      .support {
         text-align: center; 
+        padding: 20px 0;
+      }
+      .support h3 {
+        text-align: center;
       }
       .contact-image { 
         max-width: 300px; 
@@ -290,23 +399,33 @@
       .locations { 
         padding: 20px; 
         font-size: 14px; 
+        text-align: center; 
+      }
+      .locations p, .locations a {
+        display: block; 
       }
       form { 
-        padding: 15px; 
+        padding: 20px; 
         gap: 12px; 
       }
       .checkbox-group { 
-        justify-content: center; 
-        text-align: left; 
+        justify-content: flex-start; 
       }
       .submit-btn { 
         width: 80%; 
         max-width: 300px;
       }
-      
-      /* Extra adjustments for touch targets */
       input, select, textarea {
         padding: 15px; 
+      }
+      /* Footer mobile adjustments */
+      .bottom-links {
+        flex-direction: column;
+        gap: 5px;
+        margin: 10px 0;
+      }
+      .footer-bottom {
+        padding: 20px 10px;
       }
     }
   </style>
@@ -315,15 +434,10 @@
   <div class="main-container">
     <!-- Left Side: Title, Para, Form, Support -->
     <div class="left-side">
-      <!-- Title with Gradient -->
       <h1 class="title">Get in Touch with GoVal</h1>
-      
-      <!-- Paragraph -->
       <p class="para">
         We'd love to hear from you! Whether you have questions about our solutions, need a demo, or want to discuss how GoVal can help streamline your validation processes, our team is here to assist you.
       </p>
-      
-      <!-- Contact Us Label -->
       <h6 class="contact-us">Contact Us</h6>
       
       <!-- Form -->
@@ -360,7 +474,6 @@
             <option value="FR">France</option>
             <option value="JP">Japan</option>
             <option value="BR">Brazil</option>
-            <!-- Add more countries as needed -->
           </select>
         </div>
         
@@ -400,10 +513,10 @@
     <!-- Right Side: Image + Locations Below -->
     <div class="right-side">
       <img 
-        src="https://placehold.co/500x500/007bff/ffffff?text=Contact+Us+Image" 
+        src="https://www.govalidation.com/images/customer-support.jpg" 
         alt="GoVal Contact Image" 
         class="contact-image"
-        onerror="this.src='https://placehold.co/500x500/007bff/ffffff?text=Contact+Us+Image';"
+        onerror="this.src='https://placehold.co/500x500/007bff/ffffff?text=GoVal+Contact';"
       />
       
       <!-- Locations Section -->
@@ -424,15 +537,72 @@
     </div>
   </div>
 
-  <!-- Footer (Custom HTML replacement for Astro component) -->
+  <!-- REPLICATED FOOTER START -->
   <footer class="site-footer">
-    <p>&copy; 2025 GoVal. All rights reserved.</p>
-    <p>
-        <a href="#">Privacy Policy</a> | 
-        <a href="#">Terms of Use</a> |
-        <a href="#">Sitemap</a>
-    </p>
+    <div class="footer-logo">
+        <!-- Logo SVG Placeholder (Replicating the multi-colored icon) -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor">
+            <circle cx="50" cy="50" r="45" fill="#f8f9ff"/>
+            <path fill="#2a9d8f" d="M30 30 C 20 50, 40 70, 50 70 C 60 70, 80 50, 70 30 Z"/>
+            <circle cx="65" cy="40" r="10" fill="#e76f51"/>
+            <circle cx="35" cy="40" r="10" fill="#264653"/>
+            <path fill="#2a9d8f" d="M50 70 L50 85 A5 5 0 0 0 55 90 L45 90 A5 5 0 0 0 50 85 Z"/>
+        </svg>
+        GOVAL
+    </div>
+    
+    <p class="footer-tagline">GoVal: Paperless Validation solutions for Life Science Industries.</p>
+    
+    <h4 class="follow-us-heading">Follow Us On</h4>
+    
+    <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <!-- Vimeo (using 'V' for generic video platform icon) -->
+        <a href="#" class="social-icon" aria-label="Vimeo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13c-4.47 0-8.2-2.14-11-5v10c0 3.86 5.64 7 11 7s11-3.14 11-7v-10c-2.8 2.86-6.53 5-11 5z"/><path d="M10 13v-10"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.52 49.52 0 0 1 1.7-.1 2 2 0 0 1 2 2v8.8a2 2 0 0 1-2 2 49.52 49.52 0 0 1-1.7-.1 2 2 0 0 1-1.4-1.4zM22.5 17a24.12 24.12 0 0 0 0-10 2 2 0 0 0-1.4-1.4 49.52 49.52 0 0 0-1.7-.1 2 2 0 0 0-2 2v8.8a2 2 0 0 0 2 2 49.52 49.52 0 0 0 1.7-.1 2 2 0 0 0 1.4-1.4z"/><path d="M12.5 17V7a2 2 0 0 0-2-2h-3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2z"/></svg>
+        </a>
+    </div>
+    
+    <ul class="footer-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">GoVal AI</a></li>
+        <li><a href="#">Solutions</a></li>
+        <li><a href="#">About GoVal</a></li>
+        <li><a href="#">Blogs</a></li>
+        <li><a href="#">Customer Stories</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+    
+    <div class="certification-badges">
+        <!-- ISO 9001:2015 Badge Placeholder -->
+        <img 
+            src="https://placehold.co/90x90/FFFFFF/007bff?text=ISO+9001:2015" 
+            alt="ISO 9001:2015 Certified"
+            onerror="this.src='https://placehold.co/90x90/FFFFFF/007bff?text=ISO+9001:2015';"
+        >
+        <!-- ISO 27001 Badge Placeholder -->
+        <img 
+            src="https://placehold.co/90x90/FFFFFF/007bff?text=ISO+27001" 
+            alt="ISO 27001 Certified"
+            onerror="this.src='https://placehold.co/90x90/FFFFFF/007bff?text=ISO+27001';"
+        >
+    </div>
+
+    <div class="footer-bottom">
+        <div class="bottom-links">
+            <a href="#">Terms of Use</a> 
+            <a href="#">Privacy Policy</a> 
+            <a href="#">Sitemap</a>
+        </div>
+        <p class="copyright">© 2025 GoVal</p>
+    </div>
   </footer>
+  <!-- REPLICATED FOOTER END -->
 
   <!-- Custom Message Modal Structure -->
   <div id="message-modal" class="message-modal">
@@ -448,73 +618,64 @@
 
     /**
      * Shows the custom message modal.
-     * Includes null checks for TypeScript compatibility.
      * @param {string} message - The message to display.
      * @param {boolean} success - True if the message is for a successful submission.
      */
-    function showMessage(message, success = false) {
+    function showMessage(message: string | null, success = false) {
       const modal = document.getElementById('message-modal');
       const modalText = document.getElementById('modal-text');
 
-      // Null check for the text content element
       if (modalText) {
         modalText.textContent = message;
       }
       
-      // Null check for the modal container
       if (modal) {
         modal.style.display = 'block';
       }
 
-      // Set the flag
       shouldResetForm = success;
     }
 
     /**
      * Closes the custom message modal and resets the form if it was a successful submission.
-     * Uses instanceof HTMLFormElement check to safely access the .reset() method.
      */
     function closeModal() {
       const modal = document.getElementById('message-modal');
       
-      // Null check for modal before hiding
       if (modal) {
         modal.style.display = 'none';
       }
 
       const formElement = document.getElementById('contactForm');
       
-      // Null check and explicit type check for HTMLFormElement to safely use .reset()
+      // Use instanceof HTMLFormElement check to safely access the .reset() method.
       if (shouldResetForm && formElement instanceof HTMLFormElement) {
         formElement.reset(); 
-        shouldResetForm = false; // Reset the flag after use
+        shouldResetForm = false; 
       }
     }
 
     /**
      * Handles form submission logic.
-     * Uses instanceof HTMLInputElement check to safely access the .checked property.
      * @param {Event} event - The form submit event.
      */
-    function handleSubmit(event) {
-      event.preventDefault(); // Stop default form submission
+    function handleSubmit(event: { preventDefault: () => void; }) {
+      event.preventDefault(); 
       
       const terms = document.getElementById('terms');
       
-      // Check for existence, ensure it's an HTMLInputElement, and check the .checked property
+      // Use instanceof HTMLInputElement check to safely access the .checked property.
       if (!terms || !(terms instanceof HTMLInputElement) || !terms.checked) {
         showMessage('Please agree to the Terms of Use and Privacy Policy.');
         return;
       }
       
-      // Success Case: showMessage is called with 'true'
       showMessage('Form submitted successfully! We\'ll get back to you soon.', true); 
     }
 
     // Close the modal if the user clicks anywhere outside of the modal content
     window.onclick = function(event) {
       const modal = document.getElementById('message-modal');
-      // Null check for modal before checking target
       if (modal && event.target === modal) {
         closeModal();
       }
